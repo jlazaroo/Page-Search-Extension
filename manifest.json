@@ -9,7 +9,8 @@
             "js": ["content.js"]
         }
     ],
-    "host_permissions": ["<all_urls>", "activeTab"],
+    "host_permissions": ["<all_urls>"],
+    "permissions": ["activeTab"],
     "action": {
         "default_popup": "index.html",
         "default_title": "Page Search"

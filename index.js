@@ -23,11 +23,20 @@ submit.onclick = (function() {
     let message = {
         word: searchWord
     }
-
-    chrome.runtime.sendMessage(message), function(response) {
-        console.log(response);
-    }
+    sendWord();
 });
 
+async function sendWord() {
+    const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
+    const response = await chrome.tabs.sendMessage(tab.id, {greeting: searchWord});
+    // do something with response here, not outside the function
+    console.log(response);
+}
 
+// (async () => {
+//     const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
+//     const response = await chrome.tabs.sendMessage(tab.id, {greeting: "hello"});
+//     // do something with response here, not outside the function
+//     console.log(response);
+//   })();
 
